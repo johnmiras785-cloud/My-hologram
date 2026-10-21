@@ -1,0 +1,342 @@
+
+:root {
+  --bg: #050814;
+  --panel: #0b1224;
+  --line: #1a2d49;
+  --blue: #36dcff;
+  --purple: #a78bfa;
+  --text: #edf7ff;
+  --muted: #8da4bf;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text);
+  background:
+    radial-gradient(ellipse at 50% 0%, #10294b 0%, transparent 43%),
+    var(--bg);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+button, input { font: inherit; }
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 17px 5%;
+  border-bottom: 1px solid #1b2c44;
+  background: #050814d9;
+}
+
+.brand { display: flex; align-items: center; gap: 11px; }
+
+.brand-icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--blue);
+  border-radius: 13px;
+  color: var(--blue);
+  font-size: 19px;
+  font-weight: 900;
+  box-shadow: 0 0 18px #36dcff24;
+}
+
+.brand h1 { margin: 0; font-size: 15px; letter-spacing: 2px; }
+.brand h1 span { color: var(--blue); }
+.brand p { margin: 5px 0 0; color: var(--muted); font-size: 9px; letter-spacing: 1.4px; }
+
+.live-badge, .camera-status, .tag {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.live-badge i, .eyebrow span, .status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #62718a;
+}
+
+.live-badge i.active, .status-dot {
+  background: #44f4b4;
+  box-shadow: 0 0 10px #44f4b4;
+}
+
+main { width: min(780px, 92%); margin: auto; }
+
+.hero { padding: 35px 0 24px; }
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--blue);
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.eyebrow span { background: var(--blue); }
+
+.hero h2 {
+  margin: 17px 0 10px;
+  font-size: clamp(36px, 8vw, 58px);
+  line-height: 1.03;
+  letter-spacing: -2px;
+}
+
+.hero h2 span {
+  color: var(--blue);
+  text-shadow: 0 0 28px #36dcff40;
+}
+
+.hero p, .notice { color: var(--muted); font-size: 13px; line-height: 1.7; }
+
+.camera-card, .status-panel {
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 19px;
+  background: linear-gradient(145deg, #0d172b, #080e1d);
+  box-shadow: 0 15px 45px #0003;
+}
+
+.camera-heading, .section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.small-label { color: var(--blue); font-size: 9px; letter-spacing: 1.8px; }
+.camera-heading h3, .section-heading h3 { margin: 6px 0 0; font-size: 18px; }
+
+.camera-status { padding: 7px 9px; border: 1px solid var(--line); border-radius: 7px; }
+
+.camera-stage {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  max-height: 550px;
+  margin-top: 17px;
+  overflow: hidden;
+  border: 1px solid #1c4162;
+  border-radius: 13px;
+  background:
+    linear-gradient(#36dcff09 1px, transparent 1px),
+    linear-gradient(90deg, #36dcff09 1px, transparent 1px),
+    #040914;
+  background-size: 25px 25px;
+}
+
+#camera {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+}
+
+.camera-stage.camera-on #camera { display: block; }
+
+.camera-placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+.camera-placeholder h3 { margin: 15px 0 5px; }
+.camera-placeholder p { max-width: 240px; color: var(--muted); font-size: 12px; line-height: 1.6; }
+.camera-symbol { color: var(--blue); font-size: 65px; text-shadow: 0 0 25px #36dcff60; }
+.camera-on .camera-placeholder { display: none; }
+
+.scanline {
+  position: absolute;
+  z-index: 2;
+  top: -20%;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  pointer-events: none;
+  background: #36dcff65;
+  box-shadow: 0 0 12px #36dcff;
+  animation: scan 5s linear infinite;
+}
+
+@keyframes scan { to { top: 120%; } }
+
+.corner {
+  position: absolute;
+  z-index: 4;
+  width: 19px;
+  height: 19px;
+  pointer-events: none;
+  border-color: var(--blue);
+  border-style: solid;
+}
+.tl { top: 9px; left: 9px; border-width: 2px 0 0 2px; }
+.tr { top: 9px; right: 9px; border-width: 2px 2px 0 0; }
+.bl { bottom: 9px; left: 9px; border-width: 0 0 2px 2px; }
+.br { bottom: 9px; right: 9px; border-width: 0 2px 2px 0; }
+
+.hologram {
+  position: absolute;
+  z-index: 3;
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  filter: drop-shadow(0 0 10px #36dcff) drop-shadow(0 0 23px #36dcff9c);
+  animation: holo 1.8s ease-in-out infinite;
+}
+
+@keyframes holo {
+  0%, 100% { opacity: .78; }
+  50% { opacity: 1; filter: drop-shadow(0 0 18px #36dcff) drop-shadow(0 0 35px #36dcff); }
+}
+
+.hand-marker {
+  position: absolute;
+  z-index: 2;
+  width: 90px;
+  height: 90px;
+  border: 1px dashed #36dcffad;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.hand-marker span {
+  position: absolute;
+  top: -17px;
+  left: 50%;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  color: var(--blue);
+  font-size: 8px;
+  letter-spacing: 1px;
+}
+
+.hidden { display: none !important; }
+
+.stage-info {
+  position: absolute;
+  z-index: 5;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 13px;
+  background: linear-gradient(transparent, #030813dc);
+  color: var(--blue);
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  pointer-events: none;
+}
+
+.camera-actions { display: flex; gap: 10px; margin-top: 14px; }
+
+button {
+  min-height: 45px;
+  padding: 0 17px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .8px;
+}
+
+.btn-primary {
+  flex: 1;
+  color: #001019;
+  background: var(--blue);
+  border: 1px solid var(--blue);
+  box-shadow: 0 0 20px #36dcff18;
+}
+
+.btn-secondary {
+  color: var(--text);
+  background: #111b2d;
+  border: 1px solid #283b54;
+}
+
+button:disabled { opacity: .35; cursor: not-allowed; }
+
+.gesture-section { margin: 34px 0; }
+.tag { border: 1px solid #24435a; padding: 7px; border-radius: 6px; }
+
+.gesture-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; margin-top: 17px; }
+
+.gesture-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  background: #0b1324;
+}
+
+.palm-card { border-top: 2px solid var(--blue); }
+.fist-card { border-top: 2px solid var(--purple); }
+
+.gesture-emoji { font-size: 32px; }
+.gesture-name { margin-top: 13px; font-size: 12px; font-weight: 800; letter-spacing: 1px; }
+.fist-card .gesture-name { color: var(--purple); }
+.gesture-card p { color: var(--muted); font-size: 11px; }
+
+.gesture-card input { display: none; }
+
+.upload-btn {
+  width: 100%;
+  margin-top: 8px;
+  padding: 11px 7px;
+  border: 1px dashed #31546c;
+  border-radius: 8px;
+  color: var(--blue);
+  text-align: center;
+  font-size: 10px;
+  cursor: pointer;
+}
+
+.fist-card .upload-btn { color: var(--purple); border-color: #544178; }
+.file-status { margin-top: 9px; color: var(--muted); font-size: 10px; overflow-wrap: anywhere; }
+
+.status-panel { margin-bottom: 30px; }
+.status-row { display: flex; justify-content: space-between; gap: 10px; padding: 14px 0; border-bottom: 1px solid #1a2940; font-size: 12px; }
+.status-row:first-of-type { margin-top: 12px; }
+.status-row:last-child { border-bottom: 0; }
+.status-row span { color: var(--muted); }
+.status-row strong { color: var(--blue); font-size: 11px; text-align: right; }
+
+footer { padding: 23px 4%; border-top: 1px solid #19283e; color: var(--blue); text-align: center; font-size: 10px; letter-spacing: 1px; }
+footer span { display: block; margin-top: 7px; color: var(--muted); font-size: 9px; }
+
+@media (min-width: 700px) {
+  .camera-stage { aspect-ratio: 16 / 10; }
+  .hologram { width: 190px; height: 190px; }
+}
+
+@media (max-width: 380px) {
+  .camera-card, .status-panel { padding: 12px; }
+  .gesture-card { padding: 12px; }
+  .hero h2 { font-size: 37px; }
+  .brand h1 { font-size: 12px; }
+}
