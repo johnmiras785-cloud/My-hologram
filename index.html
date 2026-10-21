@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050814">
+  <title>JX Hologram Camera</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">JX</div>
+      <div>
+        <h1>HOLOGRAM <span>CAM</span></h1>
+        <p>GESTURE INTERFACE · V1.0</p>
+      </div>
+    </div>
+    <div class="live-badge"><i></i> <span id="systemState">STANDBY</span></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="eyebrow"><span></span> AUGMENTED REALITY EXPERIENCE</div>
+      <h2>Your hand.<br><span>Your hologram.</span></h2>
+      <p>Show your palm or make a fist to activate your custom visual effects.</p>
+    </section>
+
+    <section class="camera-card">
+      <div class="camera-heading">
+        <div>
+          <span class="small-label">CAMERA FEED</span>
+          <h3>Live Vision</h3>
+        </div>
+        <span class="camera-status" id="cameraStatus">CAMERA OFF</span>
+      </div>
+
+      <div class="camera-stage" id="cameraStage">
+        <video id="camera" autoplay muted playsinline></video>
+        <div class="camera-placeholder" id="placeholder">
+          <div class="camera-symbol">◎</div>
+          <h3>Ready to activate</h3>
+          <p>Allow camera access to begin hand tracking.</p>
+        </div>
+
+        <div class="scanline"></div>
+        <div class="corner tl"></div><div class="corner tr"></div>
+        <div class="corner bl"></div><div class="corner br"></div>
+
+        <div id="handMarker" class="hand-marker hidden">
+          <span>HAND TRACKED</span>
+        </div>
+
+        <img id="palmHologram" class="hologram hidden" alt="Open palm hologram">
+        <img id="fistHologram" class="hologram hidden" alt="Fist hologram">
+
+        <div class="stage-info">
+          <span id="gestureLabel">NO GESTURE</span>
+          <span>JX · AR</span>
+        </div>
+      </div>
+
+      <div class="camera-actions">
+        <button class="btn-primary" id="startBtn">▶ START CAMERA</button>
+        <button class="btn-secondary" id="stopBtn" disabled>■ STOP</button>
+      </div>
+      <p class="notice" id="message">Camera permission is required. Use HTTPS on GitHub Pages.</p>
+    </section>
+
+    <section class="gesture-section">
+      <div class="section-heading">
+        <div>
+          <span class="small-label">GESTURE CONTROLS</span>
+          <h3>Choose your power</h3>
+        </div>
+        <span class="tag">AUTO DETECT</span>
+      </div>
+
+      <div class="gesture-grid">
+        <article class="gesture-card palm-card">
+          <div class="gesture-emoji">🖐🏻</div>
+          <div class="gesture-name">OPEN PALM</div>
+          <p>Activates hologram 01</p>
+          <label class="upload-btn" for="palmUpload">＋ Add palm image</label>
+          <input type="file" id="palmUpload" accept="image/png,image/webp,image/jpeg">
+          <span class="file-status" id="palmFileStatus">No image selected</span>
+        </article>
+
+        <article class="gesture-card fist-card">
+          <div class="gesture-emoji">✊🏻</div>
+          <div class="gesture-name">CLOSED FIST</div>
+          <p>Activates hologram 02</p>
+          <label class="upload-btn" for="fistUpload">＋ Add fist image</label>
+          <input type="file" id="fistUpload" accept="image/png,image/webp,image/jpeg">
+          <span class="file-status" id="fistFileStatus">No image selected</span>
+        </article>
+      </div>
+      <p class="notice">Tip: Use transparent PNG images for the cleanest hologram effect. You can remove the backgrounds before uploading.</p>
+    </section>
+
+    <section class="status-panel">
+      <div class="section-heading">
+        <div>
+          <span class="small-label">SYSTEM MONITOR</span>
+          <h3>Detection status</h3>
+        </div>
+        <span class="status-dot"></span>
+      </div>
+      <div class="status-row">
+        <span>Hand tracking</span><strong id="trackingStatus">Inactive</strong>
+      </div>
+      <div class="status-row">
+        <span>Current gesture</span><strong id="currentGesture">None</strong>
+      </div>
+      <div class="status-row">
+        <span>Hologram mode</span><strong id="hologramStatus">Standby</strong>
+      </div>
+    </section>
+  </main>
+
+  <footer>JX HOLOGRAM CAM <span>© 2026 · BUILT FOR YOUR CREATIVITY</span></footer>
+
+  <script type="module" src="script.js"></script>
+</body>
+</html>
